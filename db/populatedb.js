@@ -20,8 +20,6 @@ const query = `
         student_name VARCHAR(255) NOT NULL,
         teacher_id INT,
         student_course INT,
-        subjects_done INT,
-        student_progress INT,
         CONSTRAINT fk_teacher 
             FOREIGN KEY (teacher_id)
                 REFERENCES teachers(teacher_id)
