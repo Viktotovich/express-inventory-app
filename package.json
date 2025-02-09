@@ -1,20 +1,20 @@
 {
+  "name": "express-inventory-app",
+  "version": "1.0.0",
+  "description": "Creating a real world functional app with express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node db/populatedb.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {},
   "dependencies": {
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "express-validator": "^7.2.1",
     "pg": "^8.13.1"
-  },
-  "name": "express-inventory-app",
-  "version": "1.0.0",
-  "description": "Creating a real world functional app with express",
-  "main": "app.js",
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "node db/populatedb.js"
-  },
-  "author": "",
-  "license": "ISC"
+  }
 }
