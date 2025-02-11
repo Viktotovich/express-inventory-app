@@ -73,3 +73,13 @@ async function getTeacherByStudent(studentId, studentName) {
     console.error(err);
   }
 }
+
+module.exports = {
+  getAllCourses,
+  getAllTeachers,
+  getAllStudents,
+  getStudentsByTeacher,
+  getTeachersBySubject,
+  getSubjectByStudent,
+  getTeacherByStudent,
+};

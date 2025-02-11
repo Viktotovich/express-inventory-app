@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= locals.title%>></title>
+  </head>
+  <body>
+    <%- include("../partials/header.ejs") %>
+    <header>
+      <h1><%= title%></h1>
+      <p>Welcome to the Mini-LMS!</p>
+    </header>
+    <section>
+      <% if (courses !== undefined){ %>
+      <!--Temporary Prettier formatter blocker-->
+      <%- include("../partials/courses-display") %> <%}%>
+    </section>
+    <!--Temporary Prettier formatter blocker-->
+    <%- include("../partials/footer.ejs") %>
+  </body>
+</html>

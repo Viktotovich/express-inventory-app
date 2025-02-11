@@ -2,9 +2,10 @@ require("dotenv").config();
 const express = require("express");
 const path = require("node:path");
 //call the routers here
+const indexRouter = require("./routes/indexRouter");
 
 const app = express();
-const PORT = process.env.port;
+const PORT = process.env.PORT;
 const assetsPath = path.join(__dirname, "public");
 
 app.use(express.static(assetsPath));
@@ -14,6 +15,11 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 //Router instances
+app.use("/", indexRouter);
+
+app.listen(PORT, () => {
+  console.log(`Mini LMS is live on PORT ${PORT}!`);
+});
 
 app.use((err, req, res, next) => {
   console.error(err);
