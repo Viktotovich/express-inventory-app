@@ -49,5 +49,27 @@ async function getTeachersBySubject(courseId, courseName) {
   }
 }
 
-//TODO: Get subjects by student
-//GET teachers by student
+async function getSubjectByStudent(studentId, studentName) {
+  try {
+    const complexQuery =
+      "SELECT courses.course_name FROM students INNER JOIN courses ON courses.course_id = students.student_course WHERE students.student_id = $1;";
+    const { rows } = await pool.query(complexQuery, [studentId]);
+    return { studentName, rows };
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+/*TODO:
+  I might need to refactor all students to use LEFT JOIN because some might not have a teacher or a course yet. Or just force select a starting course
+*/
+async function getTeacherByStudent(studentId, studentName) {
+  try {
+    const complexQuery =
+      "SELECT teachers.teacher_name FROM students JOIN teachers ON students.teacher_id = teachers.teacher_id WHERE students.student_id = $1";
+    const { rows } = await pool.query(complexQuery, [studentId]);
+    return { studentName, rows };
+  } catch (err) {
+    console.error(err);
+  }
+}
