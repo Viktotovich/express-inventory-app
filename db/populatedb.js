@@ -12,7 +12,7 @@ const query = `
 
     CREATE TABLE IF NOT EXISTS teachers (
         teacher_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        teacher_name VARCHAR( 255 ) NOT NULL,
+        teacher_name VARCHAR( 255 ) NOT NULL
     );
 
     CREATE TABLE IF NOT EXISTS students (
@@ -23,7 +23,7 @@ const query = `
         CONSTRAINT fk_teacher 
             FOREIGN KEY (teacher_id)
                 REFERENCES teachers(teacher_id)
-                    ON DELETE SET NULL
+                    ON DELETE SET NULL,
         CONSTRAINT fk_course 
             FOREIGN KEY (student_course)
                 REFERENCES courses(course_id) 
@@ -48,7 +48,7 @@ const query = `
 async function start() {
   console.log("seeding...");
   const client = new Client({
-    connectionString: `postgresql://${process.env.PGUSER}:${process.env.PGPASSWORD}@${process.env.PGHOST}:${process.env.PGPORT}/${process.env.PGDATABASE}`,
+    connectionString: `postgresql://${process.env.PGPRODUSER}:${process.env.PGPRODPASSWORD}@${process.env.PGPRODHOST}:/${process.env.PGPRODDATABASE}?sslmode=require`,
   });
 
   await client.connect();
