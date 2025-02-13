@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title%></title>
+</head>
+<body>
+    <!-- Re-enable prettier to standardize the formatting-->
+    <h1><%=title %></h1>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio, necessitatibus. Delectus, nisi. Molestias facilis, aperiam qui delectus eius doloremque ea, illum natus quas soluta rerum quia sunt harum quisquam? Nesciunt?</p>
+    <h2>Available Coures:</h2>
+    <% if (courses !== undefined && courses.length > 0) {%>
+        <ul>
+            <% courses.forEach((course) => { %>
+                <div class="c-id-container">
+                    <p>Course ID:</p>
+                    <li><%= course.id%></li>
+                </div>
+                <div class="c-name-container">
+                    <p>Course Name:</p>
+                    <li><%= course.name%></li>
+                    <a href="/enroll/<%=course.id%>">Enroll now!</a>
+                </div>
+            <%})%>
+        </ul>
+    <%} %>
+</body>
+</html>
