@@ -2,7 +2,11 @@
   <div class="f-left-item">Logo</div>
   <div class="f-right-item">Link</div>
   <div class="f-bottom-item">
-    <a href="/">Home</a>
+    <ul>
+      <% links.forEach((link) => { %>
+        <li><a href="<%=link.path%>"><%= link.name%></a></li>
+      <% })%>
+    </ul>
   </div>
 </footer>
 

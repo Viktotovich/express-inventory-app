@@ -1,5 +1,7 @@
 <nav>
   <ul>
-    <li><a href="/">Home</a></li>
+    <% links.forEach((link) => { %>
+        <li><a href="<%=link.path%>"><%= link.name%></a></li>
+    <% })%>
   </ul>
 </nav>
