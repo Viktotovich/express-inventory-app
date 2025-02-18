@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title%></title>
+</head>
+<body>
+    <h1><%= title%></h1>
+    <p>Add a course:</p>
+    <form action="/create" method="POST">
+        <label for="course-name">Course Name:</label>
+        <input type="text" id="course-name" name="courseName" placeholder="Course Name">
+        <label for="course-description">Course Description</label>
+        <textarea name="courseDescription" id="course-description" placeholder="Any information describing the course"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+    <hr>
+    <h2>Currently available courses:</h2>
+    <% if (courses !== undefined && courses !== "") { %>
+        <%- include("../partials/courses-display")%>
+    <%} else { %>
+        <p>No courses yet, wow!</p>
+    <%}%> 
+</body>
+</html>

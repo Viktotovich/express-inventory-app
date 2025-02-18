@@ -7,7 +7,7 @@ const query = `
     CREATE TABLE IF NOT EXISTS courses (
         course_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         course_name VARCHAR( 255 ) NOT NULL,
-        course_duration SMALLINT NOT NULL
+        course_description VARCHAR( 255 ) NOT NULL
     );
 
     CREATE TABLE IF NOT EXISTS teachers (

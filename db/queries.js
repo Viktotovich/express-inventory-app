@@ -3,6 +3,7 @@ const pool = require("./pool");
 async function getAllCourses() {
   try {
     const { rows } = await pool.query("SELECT * FROM courses");
+    console.dir(rows);
     return rows;
   } catch (err) {
     console.error(err);
@@ -74,6 +75,17 @@ async function getTeacherByStudent(studentId, studentName) {
   }
 }
 
+// ADDING
+async function addCourse(courseName, courseDescription) {
+  try {
+    const complexQuery =
+      "INSERT INTO courses (course_name, course_description) VALUES ($1, $2)";
+    await pool.query(complexQuery, [courseName, courseDescription]);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 module.exports = {
   getAllCourses,
   getAllTeachers,
@@ -82,4 +94,5 @@ module.exports = {
   getTeachersBySubject,
   getSubjectByStudent,
   getTeacherByStudent,
+  addCourse,
 };

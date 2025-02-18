@@ -7,4 +7,7 @@ module.exports = new Pool({
   database: process.env.PGPRODDATABASE,
   password: process.env.PGPRODPASSWORD,
   port: process.env.PGPORT,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
