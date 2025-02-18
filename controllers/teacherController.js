@@ -14,3 +14,10 @@ module.exports.getTeachersRegister = function (req, res) {
 
   res.render("pages/teachers-register", { title, links });
 };
+
+module.exports.postTeachersRegister = async function (req, res) {
+  const { firstName, lastName } = req.body;
+  const teacherName = firstName + " " + lastName;
+  await db.addTeacher(teacherName);
+  res.redirect("/teachers");
+};
