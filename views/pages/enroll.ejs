@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title%></title>
+</head>
+<body>
+    <%- include("../partials/header") %>
+    <h1><%= title%></h1>
+    <form action="enroll/<%= course%>" method="POST">
+        <!--Do we make students here || or how do we deal with it?-->
+    </form>
+    <%- include("../partials/footer") %>
+</body>
+</html>

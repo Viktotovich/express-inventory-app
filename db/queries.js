@@ -86,6 +86,17 @@ async function addCourse(courseName, courseDescription) {
   }
 }
 
+//FINDING WITH ID
+async function findCourseById(courseId) {
+  try {
+    const complexQuery = "SELECT * FROM courses WHERE course_id = $1";
+    const { rows } = await pool.query(complexQuery, [courseId]);
+    return rows;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 module.exports = {
   getAllCourses,
   getAllTeachers,
@@ -95,4 +106,5 @@ module.exports = {
   getSubjectByStudent,
   getTeacherByStudent,
   addCourse,
+  findCourseById,
 };

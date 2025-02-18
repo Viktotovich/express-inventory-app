@@ -4,6 +4,7 @@ const path = require("node:path");
 //call the routers here
 const indexRouter = require("./routes/indexRouter");
 const courseRouter = require("./routes/courseRouter");
+const enrollRouter = require("./routes/enrollRouter");
 
 const app = express();
 const PORT = process.env.PORT;
@@ -18,6 +19,7 @@ app.set("view engine", "ejs");
 //Router instances
 app.use("/", indexRouter);
 app.use("/courses", courseRouter);
+app.use("/enroll", enrollRouter);
 
 app.listen(PORT, () => {
   console.log(`Mini LMS is live on PORT ${PORT}!`);
