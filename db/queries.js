@@ -95,6 +95,16 @@ async function addTeacher(teacherName) {
   }
 }
 
+async function addStudent(studentName, courseId) {
+  try {
+    const complexQuery =
+      "INSERT INTO students (student_name, student_course) VALUES ($1, $2)";
+    await pool.query(complexQuery, [studentName, courseId]);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 //FINDING WITH ID
 async function findCourseById(courseId) {
   try {
@@ -116,5 +126,6 @@ module.exports = {
   getTeacherByStudent,
   addCourse,
   addTeacher,
+  addStudent,
   findCourseById,
 };

@@ -8,9 +8,34 @@
 <body>
     <%- include("../partials/header") %>
     <h1><%= title%></h1>
-    <form action="enroll/<%= course%>" method="POST">
-        <!--Do we make students here || or how do we deal with it?-->
-        <!--We need a default teacher for all courses-->
+    <p>Available teachers</p>
+    <ul>
+        <% if (teachers !== undefined && teachers !== '' && teachers.length !== 0) {%>
+            <%teachers.forEach((teacher) => { %>
+            <li>Teacher: <%= teacher.teacher_name%>, ID: <%= teacher.teaacher_id%></li>
+            <%}) %>
+        <% } else { %>
+            <p>No teachers are available yet, but no fret! You can still sign up!</p>
+        <% }%>
+    </ul>
+    <hr>
+    <p>Course Details:</p>
+    <p>Name: <%= course.course_name%></p>
+    <p>ID: <%= course.course_id%></p>
+    <p>Description: <%= course.course_description%></p>
+    <h2>Enter your information here to enroll</h2>
+    <form action="/enroll/<%= course.course_id%>" method="POST">
+        <p>Your student information:</p>
+        <div class="f-name">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Alexandr" required/>
+        </div>
+        <div class="l-name">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Gogol" required/>
+        </div>
+        <p>On submission, you will be enrolled into: <strong><%= course.course_name%></strong></p>
+        <button type="submit">Enroll</button>
     </form>
     <%- include("../partials/footer") %>
 </body>
