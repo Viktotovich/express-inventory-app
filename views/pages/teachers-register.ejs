@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title%></title>
+</head>
+<body>
+    <%- include("../partials/header")%>
+    <h1><%= title%></h1>
+    <form action="/teacher/register" method="POST">
+        <div class="f-name">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required minlength="2" maxlength="20">
+        </div>
+        <div class="l-name">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required minlength="2" maxlength="20">
+        </div>
+        <button type="submit">Register</button>
+    </form>
+    <%- include("../partials/footer")%>
+</body>
+</html>
