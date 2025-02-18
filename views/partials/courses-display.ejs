@@ -1,7 +1,9 @@
 <div class="courses-display">
   <% courses.forEach((course) => { %>
-    <p><%=course.course_id %></p>
-  <p><%=course.course_name %></p>
-  <p><%=course.course_duration %></p>
+    <hr>
+    <p>Course ID: <%=course.course_id %></p>
+  <p>Course Name: <%=course.course_name %></p>
+  <p>Course Description: <%=course.course_description %></p>
+  <hr>
   <%})%>
 </div>
