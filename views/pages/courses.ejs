@@ -12,22 +12,11 @@
     <h2>Available Courses in our Mini LMS:</h2>
     <% if (courses !== undefined && courses.length > 0) {%>
         <ul>
-            <% courses.forEach((course) => { %>
-                <div class="c-id-container">
-                    <p>Course ID:</p>
-                    <li><%= course.id%></li>
-                </div>
-                <div class="c-name-container">
-                    <p>Course Name:</p>
-                    <li><%= course.name%></li>
-                    <a href="/enroll/<%=course.id%>">Enroll now!</a>
-                </div>
-            <%})%>
+            <%- include("../partials/courses-display")%>
         </ul>
     <%} else { %>
         <p>Oops, like there are no courses yet!</p>
-        <a href="/courses/create">You can add courses here</a>
     <%}%>
-    
+    <a href="/courses/create">Add courses here</a>
 </body>
 </html>

@@ -1,9 +1,11 @@
 <div class="courses-display">
   <% courses.forEach((course) => { %>
+    <% console.log(course)%>
     <hr>
     <p>Course ID: <%=course.course_id %></p>
   <p>Course Name: <%=course.course_name %></p>
   <p>Course Description: <%=course.course_description %></p>
+  <a href="/enroll/<%=course.course_id%>">Enroll now!</a>
   <hr>
   <%})%>
 </div>
