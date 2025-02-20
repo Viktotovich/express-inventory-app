@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title%></title>
+</head>
+<body>
+    <%- include("../partials/header")%>
+    <section>
+        <h1><%=title %></h1>
+        <div class="change-course">
+            <h2><%= student_name%></h2>
+            <p>Student ID: <%= student_id%></p>
+            <h3>Current Course:</h3>
+            <p><%= course_name%>, Course ID: <%=course_id %></p>
+            <h4>Change Course:</h4>
+            <form action="/change/<%=course_id%>/<%=student_id%>" method="POST">
+                <% courses.forEach((course) => { %>
+                    <div>
+                        <input type="radio" id="<%= course.id%>" name="courseName" value="<%= course.course_id%>">
+                        <label for="<%= course.course_id%>"><%= course.course_name%></label>
+                    </div>
+                <% })%>
+                <button type="submit">Confirm Changes</button>
+            </form>
+        </div>
+    </section>
+    <%- include("../partials/footer")%>
+</body>
+</html>

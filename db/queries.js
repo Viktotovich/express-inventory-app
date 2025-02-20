@@ -3,7 +3,6 @@ const pool = require("./pool");
 async function getAllCourses() {
   try {
     const { rows } = await pool.query("SELECT * FROM courses");
-    console.dir(rows);
     return rows;
   } catch (err) {
     console.error(err);
@@ -116,6 +115,26 @@ async function findCourseById(courseId) {
   }
 }
 
+async function findStudentById(studentId) {
+  try {
+    const complexQuery = "SELECT * FROM students WHERE student_id = $1";
+    const { rows } = await pool.query(complexQuery, [studentId]);
+    return rows;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function findTeacherById(teacherId) {
+  try {
+    const complexQuery = "SELECT * FROM teachers WHERE teacher_id = $1";
+    const { rows } = await pool.query(complexQuery, [teacherId]);
+    return rows;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 //Complex queries with JOINS
 async function getStudentsWithCoursesAndTeachers() {
   try {
@@ -143,6 +162,8 @@ module.exports = {
   addStudent,
   //find with id
   findCourseById,
+  findStudentById,
+  findTeacherById,
   //complex gets
   getStudentsWithCoursesAndTeachers,
   //updates
