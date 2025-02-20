@@ -21,3 +21,30 @@ module.exports.postTeachersRegister = async function (req, res) {
   await db.addTeacher(teacherName);
   res.redirect("/teachers");
 };
+
+module.exports.getTeacherAssign = async function (req, res) {
+  const { teacherID } = req.params;
+  const rows = await db.getCoursesByTeacherId(teacherID);
+  const courses = await db.getAllCourses();
+  const { current_course, course_id, course_description, teacher_name } =
+    rows[0];
+
+  const title = "Assign/Change course for " + teacher_name;
+  res.render("pages/teacher-assign.ejs", {
+    title,
+    links,
+    teacher_name,
+    current_course,
+    course_id,
+    course_description,
+    courses,
+    teacherID,
+  });
+};
+
+module.exports.postTeacherAssign = async function (req, res) {
+  const { teacherID } = req.params;
+  const { courseID } = req.body;
+  await db.updateTeacherCourse(courseID, teacherID);
+  res.redirect("/teachers");
+};

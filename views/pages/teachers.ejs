@@ -12,7 +12,11 @@
         <h2>We proudly present, our team of teachers!</h2>
         <ul>
             <% teachers.forEach((teacher) => { %>
-                <li><%= teacher.teacher_name%></li>
+                <div class="teacher-container">
+                    <li><%= teacher.teacher_name%></li>
+                    <p>Currently Teaching: <!--TODO --></p>
+                    <a href="/teachers/assign/<%= teacher.teacher_id%>">Assign a course%></a>
+                </div>
             <%})%>
         </ul>
     <%} else {%>

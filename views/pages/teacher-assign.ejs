@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title%></title>
+</head>
+<body>
+    <%- include("../partials/header")%>
+    <section>
+        <h1><%=title%></h1>
+        <hr>
+        <div class="assign-a-course">
+            <p><%= teacher_name%> currently is assigned to: <%= current_course ? current_course : "(No course assigned yet)"%>, course ID: <%=course_id ? course_id : 0%></p>
+            <p>The course description:</p>
+            <p><%= course_description ? course_description : "No description, as they are not yet assigned a course. Click below to assign one!" %></p>
+            <form action="/teachers/assign/<%= teacherID %>" method="POST">
+                <div class="assign-c-to-t">
+                    <% courses.forEach((course) =>{ %>
+                        <div>
+                            <input type="radio" id="<%=course.course_id %>" name="courseID" value="<%=course.course_id%>">
+                            <label for="<%= course.course_id%>"><%=course.course_name%></label>
+                        </div>
+                    <%})%>
+                    <button type="submit">Confirm changes</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <%- include("../partials/footer")%>
+</body>
+</html>

@@ -147,12 +147,34 @@ async function getStudentsWithCoursesAndTeachers() {
   }
 }
 
+async function getCoursesByTeacherId(teacherID) {
+  try {
+    //Thank Mc Jebus for SQL BOLT training drilling this into me, and SQLZOO for hammering it down
+    const complexQuery =
+      "SELECT teachers.teacher_name, courses.course_id, courses.course_name, courses.course_description FROM teachers LEFT JOIN teacher_courses ON teachers.teacher_id = teacher_courses.teacher_id LEFT JOIN courses ON courses.course_id = teacher_courses.course_id WHERE teachers.teacher_id = $1";
+    const { rows } = await pool.query(complexQuery, [teacherID]);
+    return rows;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 //Updates
 async function updateStudentCourse(newCourseId, studentId) {
   try {
     const complexQuery =
       "UPDATE students SET student_course = $1 WHERE student_id = $2";
     await pool.query(complexQuery, [newCourseId, studentId]);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function updateTeacherCourse(newCourseId, teacherId) {
+  try {
+    const complexQuery =
+      "UPDATE teacher_courses SET course_id = $1 WHERE teacher_id = $2";
+    await pool.query(complexQuery, [newCourseId, teacherId]);
   } catch (err) {
     console.error(err);
   }
@@ -177,7 +199,9 @@ module.exports = {
   findTeacherById,
   //complex gets
   getStudentsWithCoursesAndTeachers,
+  getCoursesByTeacherId,
   //updates
   updateStudentCourse,
+  updateTeacherCourse,
   //deletes
 };
