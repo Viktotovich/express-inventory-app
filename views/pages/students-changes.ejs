@@ -15,10 +15,10 @@
             <h3>Current Course:</h3>
             <p><%= course_name%>, Course ID: <%=course_id %></p>
             <h4>Change Course:</h4>
-            <form action="/students/change/<%=course_id%>/<%=student_id%>" method="POST">
+            <form action="/students/change/<%=student_id%>" method="POST">
                 <% courses.forEach((course) => { %>
                     <div>
-                        <input type="radio" id="<%= course.id%>" name="courseName" value="<%= course.course_id%>">
+                        <input type="radio" id="<%= course.course_id%>" name="courseID" value="<%= course.course_id%>">
                         <label for="<%= course.course_id%>"><%= course.course_name%></label>
                     </div>
                 <% })%>

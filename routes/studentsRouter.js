@@ -4,13 +4,7 @@ const studentController = require("../controllers/studentController");
 const studentRouter = Router();
 
 studentRouter.get("/", studentController.getStudents);
-studentRouter.get(
-  "/change/:courseID/:studentID",
-  studentController.getStudentsChange
-);
-studentRouter.post(
-  "/change/:courseID/:studentID",
-  studentController.postStudentsChange
-);
+studentRouter.get("/change/:studentID", studentController.getStudentsChange);
+studentRouter.post("/change/:studentID", studentController.postStudentsChange);
 
 module.exports = studentRouter;

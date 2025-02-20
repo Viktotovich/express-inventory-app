@@ -18,7 +18,7 @@
                 <h3>Current Course:</h3>
                 <p>Course Name: <%= row.course_name %></p>
                 <p>Course ID: <%= row.course_id%></p>
-                <a href="/students/change/<%=row.course_id %>/<%=row.student_id%>">Change Course for <%= row.student_name%></a>
+                <a href="/students/change/<%=row.student_id%>">Change Course for <%= row.student_name%></a>
                 <h4>Teacher Information</h4>
                 <% if (row.teacher_name !== null && row.teacher_name !== "") { %>
                     <p>Teacher Name: <%= row.teacher_name%></p>

@@ -8,12 +8,17 @@ module.exports.getStudents = async function (req, res) {
 };
 
 module.exports.getStudentsChange = async function (req, res) {
-  const { courseID, studentID } = req.params;
+  const { studentID } = req.params;
 
   const studentRows = await db.findStudentById(studentID);
+  const { student_name, student_id, student_course } = studentRows[0];
+
+  //to prevent crashing, as many systems rely on the old name of courseID
+  const courseID = student_course;
+
+  //it wont find anything if a student doesnt have a pre-assigned course, TODO: figure out how to by-pass that
   const courseRows = await db.findCourseById(courseID);
 
-  const { student_name, student_id } = studentRows[0];
   const { course_name, course_id } = courseRows[0];
 
   const courses = await db.getAllCourses();
@@ -31,8 +36,10 @@ module.exports.getStudentsChange = async function (req, res) {
 };
 
 module.exports.postStudentsChange = async function (req, res) {
-  const { courseID, studentID } = req.params;
-  console.dir(courseID, studentID);
+  const { studentID } = req.params;
+  const { courseID } = req.body;
+  console.dir(req.body);
+  console.dir(courseID + "and" + studentID);
   await db.updateStudentCourse(courseID, studentID);
   res.redirect("/");
 };
