@@ -32,6 +32,7 @@ module.exports.getStudentsChange = async function (req, res) {
 
 module.exports.postStudentsChange = async function (req, res) {
   const { courseID, studentID } = req.params;
+  console.dir(courseID, studentID);
   await db.updateStudentCourse(courseID, studentID);
   res.redirect("/");
 };

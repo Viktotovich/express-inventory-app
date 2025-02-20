@@ -12,7 +12,7 @@
     <ul>
         <% if (teachers !== undefined && teachers !== '' && teachers.length !== 0) {%>
             <%teachers.forEach((teacher) => { %>
-            <li>Teacher: <%= teacher.teacher_name%>, ID: <%= teacher.teaacher_id%></li>
+            <li>Teacher: <%= teacher.teacher_name%>, ID: <%= teacher.teacher_id%></li>
             <%}) %>
         <% } else { %>
             <p>No teachers are available yet, but no fret! You can still sign up!</p>
