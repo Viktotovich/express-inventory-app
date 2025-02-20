@@ -6,6 +6,7 @@ const indexRouter = require("./routes/indexRouter");
 const courseRouter = require("./routes/courseRouter");
 const enrollRouter = require("./routes/enrollRouter");
 const teacherRouter = require("./routes/teacherRouter");
+const studentRouter = require("./routes/studentsRouter");
 
 const app = express();
 const PORT = process.env.PORT;
@@ -22,6 +23,7 @@ app.use("/", indexRouter);
 app.use("/courses", courseRouter);
 app.use("/enroll", enrollRouter);
 app.use("/teachers", teacherRouter);
+app.use("/students", studentRouter);
 
 app.listen(PORT, () => {
   console.log(`Mini LMS is live on PORT ${PORT}!`);

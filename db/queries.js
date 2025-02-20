@@ -116,7 +116,20 @@ async function findCourseById(courseId) {
   }
 }
 
+//Complex queries with JOINS
+async function getStudentsWithCoursesAndTeachers() {
+  try {
+    const complexQuery =
+      "SELECT students.student_name, students.student_id, courses.course_name, courses.course_id, teachers.teacher_name, teachers.teacher_id FROM students LEFT JOIN teachers ON students.teacher_id = teachers.teacher_id LEFT JOIN courses ON students.student_course = courses.course_id";
+    const { rows } = await pool.query(complexQuery);
+    return rows;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 module.exports = {
+  //simple gets
   getAllCourses,
   getAllTeachers,
   getAllStudents,
@@ -124,8 +137,14 @@ module.exports = {
   getTeachersBySubject,
   getSubjectByStudent,
   getTeacherByStudent,
+  //adding
   addCourse,
   addTeacher,
   addStudent,
+  //find with id
   findCourseById,
+  //complex gets
+  getStudentsWithCoursesAndTeachers,
+  //updates
+  //deletes
 };

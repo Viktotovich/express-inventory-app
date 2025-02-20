@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title%></title>
+</head>
+<body>
+    <%- include("../partials/header")%>
+    <section>
+        <h1><%= title%></h1>
+        <% rows.forEach((row) => { %>
+            <hr>
+            <div class="student-info">
+                <h2>Student Information:</h2>
+                <p>Name: <%= row.student_name%></p>
+                <p>ID: <%= row.student_id%></p>
+                <h3>Current Course:</h3>
+                <p>Course Name: <%= row.course_name %></p>
+                <p>Course ID: <%= row.course_id%></p>
+                <a href="/students/change/<%=row.course_id %>/<%=row.student_id%>">Change Course for <%= row.student_name%></a>
+                <h4>Teacher Information</h4>
+                <% if (row.teacher_name !== null && row.teacher_name !== "") { %>
+                    <p>Teacher Name: <%= row.teacher_name%></p>
+                    <p>Teacher ID: <%= row.teacher_id%></p>
+                <% } else { %>
+                    <p>Seems like there are no teachers for this course.</p>
+                    <a href="/teachers">Become a teacher yourself and teach this course!</a>
+                <% }%>
+            </div>
+            <hr>
+        <%})%>
+    </section>
+    <%- include("../partials/footer")%>
+</body>
+</html>
