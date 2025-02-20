@@ -8,5 +8,9 @@ studentRouter.get(
   "/change/:courseID/:studentID",
   studentController.getStudentsChange
 );
+studentRouter.post(
+  "/change/:courseID/:studentID",
+  studentController.postStudentsChange
+);
 
 module.exports = studentRouter;

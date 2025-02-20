@@ -29,3 +29,9 @@ module.exports.getStudentsChange = async function (req, res) {
     courses,
   });
 };
+
+module.exports.postStudentsChange = async function (req, res) {
+  const { courseID, studentID } = req.params;
+  await db.updateStudentCourse(courseID, studentID);
+  res.redirect("/");
+};
