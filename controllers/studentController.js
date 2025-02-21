@@ -13,7 +13,7 @@ module.exports.getStudentsChange = async function (req, res) {
   const studentRows = await db.findStudentById(studentID);
   const { student_name, student_id, student_course } = studentRows[0];
 
-  //to prevent crashing, as many systems rely on the old name of courseID
+  //Many systems rely on the old name of courseID
   const courseID = student_course;
 
   const courseRows = await db.findCourseById(courseID);
@@ -38,9 +38,30 @@ module.exports.getStudentsChange = async function (req, res) {
 module.exports.postStudentsChange = async function (req, res) {
   const { studentID } = req.params;
   const { courseID } = req.body;
-  console.dir(req.body);
-  console.dir(courseID + "and" + studentID);
   await db.updateStudentCourse(courseID, studentID);
+  res.redirect("/students");
+};
+
+module.exports.getStudentsUpdate = async function (req, res) {
+  const { studentID } = req.params;
+  const row = await db.findStudentById(studentID);
+  const studentName = row[0].student_name;
+  const [firstName, lastName] = studentName.split(" ");
+  const title = "Change " + studentName + "'s information.";
+  res.render("pages/student-update", {
+    title,
+    links,
+    firstName,
+    lastName,
+    studentID,
+  });
+};
+
+module.exports.postStudentsUpdate = async function (req, res) {
+  const { studentID } = req.params;
+  const { firstName, lastName } = req.body;
+  const fullName = firstName + " " + lastName;
+  await db.updateStudentName(fullName, studentID);
   res.redirect("/students");
 };
 

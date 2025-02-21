@@ -15,6 +15,10 @@
                 <h2>Student Information:</h2>
                 <p>Name: <%= row.student_name%></p>
                 <p>ID: <%= row.student_id%></p>
+                <div class="delete-and-update">
+                    <a href="/students/update/<%=row.student_id%>">Update</a>
+                    <a href="/students/delete/<%=row.student_id%>">Delete</a>
+                </div>
                 <h3>Current Course:</h3>
                 <p>Course Name: <%= row.course_name %></p>
                 <p>Course ID: <%= row.course_id%></p>

@@ -180,6 +180,16 @@ async function updateTeacherCourse(newCourseId, teacherId) {
   }
 }
 
+async function updateStudentName(newName, studentId) {
+  try {
+    const complexQuery =
+      "UPDATE students SET student_name = $1 WHERE student_id = $2";
+    await pool.query(complexQuery, [newName, studentId]);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 module.exports = {
   //simple gets
   getAllCourses,
@@ -203,5 +213,6 @@ module.exports = {
   //updates
   updateStudentCourse,
   updateTeacherCourse,
+  updateStudentName,
   //deletes
 };
