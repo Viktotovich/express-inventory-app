@@ -14,7 +14,8 @@
         <p>ID: <%=teacher_id%></p>
         <p>Current Course: <%=course_name%></p>
         <p>Course Information: <%= course_description%></p>
-        <a href="/teachers/assign/<%=teacher_id%>">Assign a course%></a>
+        <a href="/teachers/assign/<%=teacher_id%>">Assign/Change course%></a>
+        <a href="/teachers/update/<%=teacher_id%>">Change Personal Info</a>
         <hr>
     </section>
     <%-include("../partials/footer")%>

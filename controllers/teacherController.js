@@ -71,3 +71,27 @@ module.exports.getTeachersMoreInfo = async function (req, res) {
     links,
   });
 };
+
+module.exports.getTeacherUpdate = async function (req, res) {
+  const { teacherID } = req.params;
+  const rows = await db.findTeacherById(teacherID);
+  const { teacher_name, teacher_id } = rows[0];
+  const [firstName, lastName] = teacher_name.split(" ");
+  const title = "Edit teacher information for " + teacher_name;
+
+  res.render("pages/teacher-update", {
+    links,
+    title,
+    firstName,
+    lastName,
+    teacher_id,
+  });
+};
+
+module.exports.postTeacherUpdate = async function (req, res) {
+  const { teacherID } = req.params;
+  const { firstName, lastName } = req.body;
+  const fullName = firstName + " " + lastName;
+  await db.updateTeacherName(fullName, teacherID);
+  res.redirect("/teachers");
+};
