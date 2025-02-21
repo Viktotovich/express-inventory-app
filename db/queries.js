@@ -221,6 +221,16 @@ async function updateTeacherName(newName, teacherId) {
   }
 }
 
+async function updateCourseNameAndDescription(courseId, cDescription, cName) {
+  try {
+    const complexQuery =
+      "UPDATE courses SET course_name = $1, course_description = $2 WHERE course_id = $3";
+    await pool.query(complexQuery, [cName, cDescription, courseId]);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 //Deletes
 async function deleteStudentById(studentId) {
   try {
@@ -258,6 +268,7 @@ module.exports = {
   updateTeacherCourse,
   updateStudentName,
   updateTeacherName,
+  updateCourseNameAndDescription,
   //deletes
   deleteStudentById,
 };

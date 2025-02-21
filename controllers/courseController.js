@@ -38,3 +38,16 @@ module.exports.getEditCourse = async function (req, res) {
     course_description,
   });
 };
+
+module.exports.postEditCourse = async function (req, res) {
+  const { courseID } = req.params;
+  const { courseName, courseDescription } = req.body;
+
+  await db.updateCourseNameAndDescription(
+    courseID,
+    courseName,
+    courseDescription
+  );
+
+  res.redirect("/courses");
+};
