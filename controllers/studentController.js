@@ -16,9 +16,7 @@ module.exports.getStudentsChange = async function (req, res) {
   //to prevent crashing, as many systems rely on the old name of courseID
   const courseID = student_course;
 
-  //it wont find anything if a student doesnt have a pre-assigned course, TODO: figure out how to by-pass that
   const courseRows = await db.findCourseById(courseID);
-  //IDEA - CODE 0: for no course
 
   const safeResult = safeDestructure(courseRows);
   const { course_name, course_id } = safeResult;
@@ -43,11 +41,12 @@ module.exports.postStudentsChange = async function (req, res) {
   console.dir(req.body);
   console.dir(courseID + "and" + studentID);
   await db.updateStudentCourse(courseID, studentID);
-  res.redirect("/");
+  res.redirect("/students");
 };
 
 function safeDestructure(arr) {
   if (arr.length < 1) {
+    //CODE 0:No Course
     return { course_id: 0, course_name: "No Course" };
   } else {
     const { course_id, course_name } = arr[0];
