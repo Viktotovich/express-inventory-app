@@ -17,7 +17,7 @@
                 <p>ID: <%= row.student_id%></p>
                 <div class="delete-and-update">
                     <a href="/students/update/<%=row.student_id%>">Update</a>
-                    <a href="/students/delete/<%=row.student_id%>">Delete</a>
+                    <button onclick="deleteStudent(<%= row.student_id %>)">Delete</button>
                 </div>
                 <h3>Current Course:</h3>
                 <p>Course Name: <%= row.course_name %></p>
@@ -35,6 +35,16 @@
             <hr>
         <%})%>
     </section>
+    <script>
+        function deleteStudent(studentId) {
+            const uPass = prompt("Enter a password to delete the user")
+            if (uPass === "admin") {
+                window.location.href = `/students/delete/${studentId}`
+            } else {
+                alert("Failed")
+            }
+        }
+    </script>
     <%- include("../partials/footer")%>
 </body>
 </html>

@@ -65,6 +65,13 @@ module.exports.postStudentsUpdate = async function (req, res) {
   res.redirect("/students");
 };
 
+module.exports.getStudentDelete = async function (req, res) {
+  const { studentID } = req.params;
+  await db.deleteStudentById(studentID);
+
+  res.redirect("/students");
+};
+
 function safeDestructure(arr) {
   if (arr.length < 1) {
     //CODE 0:No Course

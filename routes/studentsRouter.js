@@ -8,5 +8,6 @@ studentRouter.get("/change/:studentID", studentController.getStudentsChange);
 studentRouter.post("/change/:studentID", studentController.postStudentsChange);
 studentRouter.get("/update/:studentID", studentController.getStudentsUpdate);
 studentRouter.post("/update/:studentID", studentController.postStudentsUpdate);
+studentRouter.get("/delete/:studentID", studentController.getStudentDelete);
 
 module.exports = studentRouter;
