@@ -22,3 +22,19 @@ module.exports.postCreateCourse = async function (req, res) {
   await db.addCourse(courseName, courseDescription);
   res.redirect("/");
 };
+
+module.exports.getEditCourse = async function (req, res) {
+  const { courseID } = req.params;
+  const rows = await db.findCourseById(courseID);
+  const { course_name, course_description, course_id } = rows[0];
+
+  const title = "Change course information for " + " '" + course_name + " '";
+
+  res.render("pages/course-update", {
+    links,
+    title,
+    course_name,
+    course_id,
+    course_description,
+  });
+};
