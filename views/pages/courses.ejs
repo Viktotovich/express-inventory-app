@@ -6,17 +6,20 @@
     <title><%= title%></title>
 </head>
 <body>
-    <!-- Re-enable prettier to standardize the formatting-->
-    <h1><%=title %></h1>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio, necessitatibus. Delectus, nisi. Molestias facilis, aperiam qui delectus eius doloremque ea, illum natus quas soluta rerum quia sunt harum quisquam? Nesciunt?</p>
-    <h2>Available Courses in our Mini LMS:</h2>
-    <% if (courses !== undefined && courses.length > 0) {%>
-        <ul>
-            <%- include("../partials/courses-display")%>
-        </ul>
-    <%} else { %>
-        <p>Oops, like there are no courses yet!</p>
-    <%}%>
-    <a href="/courses/create">Add courses here</a>
+    <%- include("../partials/header")%>
+    <section>
+        <h1><%=title %></h1>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio, necessitatibus. Delectus, nisi. Molestias facilis, aperiam qui delectus eius doloremque ea, illum natus quas soluta rerum quia sunt harum quisquam? Nesciunt?</p>
+        <h2>Available Courses in our Mini LMS:</h2>
+        <% if (courses !== undefined && courses.length > 0) {%>
+            <ul>
+                <%- include("../partials/courses-display")%>
+            </ul>
+        <%} else { %>
+            <p>Oops, like there are no courses yet!</p>
+        <%}%>
+        <a href="/courses/create">Add courses here</a>
+    </section>
+    <%- include("../partials/footer")%>
 </body>
 </html>
