@@ -1,5 +1,7 @@
 # express-inventory-app
 
+Live version: <https://mini-lms-4zpf.onrender.com/>
+
 Creating a real world functional app with express
 
 Mini LMS Inventory System
@@ -21,3 +23,9 @@ Ideally, my path going forward is as such:
 4 - Blog editing tool, we also need it for one of my friend's websites
 5 - Custom CMS built with React - or Payload CMS to speed up development speed. Kind of related to 4, but is rather a tool that can be re-used.
 6 - AdonisJS, (familiarity with) Tailwind, and Typescript to get closer to C#
+
+## What makes me happy
+
+I am so glad I dealt with building from, and working with production database from the start. 0 re-configuration hell, took 2 mins to launch the service on render.
+
+10/10, would reccomend
