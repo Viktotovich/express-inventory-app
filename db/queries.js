@@ -169,6 +169,17 @@ async function getCoursesByTeacherId(teacherID) {
   }
 }
 
+async function getTeacherByCourseId(courseId) {
+  try {
+    const complexQuery =
+      "SELECT teacher_courses.teacher_id, teachers.teacher_name FROM courses LEFT JOIN teacher_courses ON teacher_courses.course_id = courses.course_id LEFT JOIN teachers ON teacher_courses.teacher_id = teachers.teacher_id WHERE courses.course_id = $1";
+    const { rows } = await pool.query(complexQuery, [courseId]);
+    return rows;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 //Updates
 async function updateStudentCourse(newCourseId, studentId) {
   try {
@@ -231,6 +242,7 @@ module.exports = {
   //complex gets
   getStudentsWithCoursesAndTeachers,
   getCoursesByTeacherId,
+  getTeacherByCourseId,
   //updates
   updateStudentCourse,
   updateTeacherCourse,

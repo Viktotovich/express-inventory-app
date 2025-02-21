@@ -24,9 +24,9 @@
                 <p>Course ID: <%= row.course_id%></p>
                 <a href="/students/change/<%=row.student_id%>">Change Course for <%= row.student_name%></a>
                 <h4>Teacher Information</h4>
-                <% if (row.teacher_name !== null && row.teacher_name !== "") { %>
-                    <p>Teacher Name: <%= row.teacher_name%></p>
-                    <p>Teacher ID: <%= row.teacher_id%></p>
+                <% if (teacher_name !== null && teacher_name !== "") { %>
+                    <p>Teacher Name: <%= teacher_name%></p>
+                    <p>Teacher ID: <%= teacher_id%></p>
                 <% } else { %>
                     <p>Seems like there are no teachers for this course.</p>
                     <a href="/teachers">Become a teacher yourself and teach this course!</a>

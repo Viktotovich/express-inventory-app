@@ -4,7 +4,17 @@ const links = require("../links");
 module.exports.getStudents = async function (req, res) {
   const title = "Proudly presenting: Our Students";
   const rows = await db.getStudentsWithCoursesAndTeachers();
-  res.render("pages/students.ejs", { title, links, rows });
+  /*Ah, you have to forgive me for this colossal fuck up, it's my first ever db application apart from the mini message board. I took on the Goliath. Now, we are working around this mess-up. It's not that bad, probably fixable - but I am not going to, as at the moment I want to focus on learning Auth, ORMs, and AdonisJS*/
+  const { course_id } = rows[0];
+  const teacherRow = await db.getTeacherByCourseId(course_id);
+  const { teacher_name, teacher_id } = teacherRow[0];
+  res.render("pages/students.ejs", {
+    title,
+    links,
+    rows,
+    teacher_name,
+    teacher_id,
+  });
 };
 
 module.exports.getStudentsChange = async function (req, res) {
