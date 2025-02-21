@@ -18,8 +18,10 @@ module.exports.getStudentsChange = async function (req, res) {
 
   //it wont find anything if a student doesnt have a pre-assigned course, TODO: figure out how to by-pass that
   const courseRows = await db.findCourseById(courseID);
+  //IDEA - CODE 0: for no course
 
-  const { course_name, course_id } = courseRows[0];
+  const safeResult = safeDestructure(courseRows);
+  const { course_name, course_id } = safeResult;
 
   const courses = await db.getAllCourses();
 
@@ -43,3 +45,12 @@ module.exports.postStudentsChange = async function (req, res) {
   await db.updateStudentCourse(courseID, studentID);
   res.redirect("/");
 };
+
+function safeDestructure(arr) {
+  if (arr.length < 1) {
+    return { course_id: 0, course_name: "No Course" };
+  } else {
+    const { course_id, course_name } = arr[0];
+    return { course_id, course_name };
+  }
+}
