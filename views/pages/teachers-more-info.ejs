@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=title%></title>
+</head>
+<body>
+    <%-include("../partials/header")%>
+    <section>
+        <h1><%=title%></h1>
+        <hr>
+        <p>Name: <%=teacher_name%></p>
+        <p>ID: <%=teacher_id%></p>
+        <p>Current Course: <%=course_name%></p>
+        <p>Course Information: <%= course_description%></p>
+        <a href="/teachers/assign/<%=teacher_id%>">Assign a course%></a>
+        <hr>
+    </section>
+    <%-include("../partials/footer")%>
+</body>
+</html>

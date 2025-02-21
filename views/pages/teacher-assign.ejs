@@ -18,7 +18,7 @@
                 <div class="assign-c-to-t">
                     <% courses.forEach((course) =>{ %>
                         <div>
-                            <input type="radio" id="<%=course.course_id %>" name="courseID" value="<%=course.course_id%>">
+                            <input type="radio" id="<%=course.course_id %>" name="courseID" value="<%=course.course_id%>" checked="checked">
                             <label for="<%= course.course_id%>"><%=course.course_name%></label>
                         </div>
                     <%})%>

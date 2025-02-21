@@ -5,6 +5,7 @@ const {
   postTeachersRegister,
   getTeacherAssign,
   postTeacherAssign,
+  getTeachersMoreInfo,
 } = require("../controllers/teacherController");
 
 const teacherRouter = Router();
@@ -14,5 +15,6 @@ teacherRouter.get("/register", getTeachersRegister);
 teacherRouter.post("/register", postTeachersRegister);
 teacherRouter.get("/assign/:teacherID", getTeacherAssign);
 teacherRouter.post("/assign/:teacherID", postTeacherAssign);
+teacherRouter.get("/info/:teacherID", getTeachersMoreInfo);
 
 module.exports = teacherRouter;

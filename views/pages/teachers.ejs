@@ -14,8 +14,7 @@
             <% teachers.forEach((teacher) => { %>
                 <div class="teacher-container">
                     <li><%= teacher.teacher_name%></li>
-                    <p>Currently Teaching: <!--TODO --></p>
-                    <a href="/teachers/assign/<%= teacher.teacher_id%>">Assign a course%></a>
+                    <a href="/teachers/info/<%=teacher.teacher_id%>">More Info</a>
                 </div>
             <%})%>
         </ul>

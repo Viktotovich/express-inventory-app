@@ -45,6 +45,29 @@ module.exports.getTeacherAssign = async function (req, res) {
 module.exports.postTeacherAssign = async function (req, res) {
   const { teacherID } = req.params;
   const { courseID } = req.body;
-  await db.updateTeacherCourse(courseID, teacherID);
-  res.redirect("/teachers");
+  const isEmpty = await db.getCoursesByTeacherId(teacherID);
+  if (isEmpty[0].course_id === null) {
+    await db.addTeacherCourseRelationship(Number(courseID), Number(teacherID));
+    res.redirect("/teachers");
+  } else {
+    await db.updateTeacherCourse(Number(courseID), Number(teacherID));
+    res.redirect("/teachers");
+  }
+};
+
+module.exports.getTeachersMoreInfo = async function (req, res) {
+  const { teacherID } = req.params;
+  const rows = await db.getCoursesByTeacherId(teacherID);
+  const teacher_id = teacherID;
+  const { teacher_name, course_name, course_description } = rows[0];
+  const title = "Change details for " + teacher_name;
+
+  res.render("pages/teachers-more-info", {
+    teacher_name,
+    teacher_id,
+    course_name,
+    course_description,
+    title,
+    links,
+  });
 };
